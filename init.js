@@ -4,11 +4,15 @@ const sheet = ss.getSheetByName("pag1");
 function doGet(e) {
   var action = e.parameter.action;
 
+  if (action == "getInfo") {
+    getInformations("getInfo");
+  }
+
   return HtmlService.createHtmlOutputFromFile("index");
   
 }
 
-function getInformations() {
+function getInformations(param) {
   let data = {};
 
   let ultLin = sheet.getLastRow();
@@ -22,7 +26,7 @@ function getInformations() {
 
   let result = JSON.stringify(data);
 
-  sheet.getRange(sheet.getLastRow() + 1, 10).setValue("10");
+  sheet.getRange(sheet.getLastRow() + 1, 10).setValue(param);
 
   Logger.log(result);
 
